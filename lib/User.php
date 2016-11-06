@@ -20,8 +20,8 @@ class User
 	function __construct()
 	{
 		// 将应用配置替换默认配置
-		if (Config::has('generic')) {
-    		$config = Config::get('generic');
+		if (Config::has('user')) {
+    		$config = Config::get('user');
     		$this->_config = array_merge( $this->_config, $config );
     	}
 	}
