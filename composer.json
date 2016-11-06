@@ -1,0 +1,29 @@
+{
+    "name": "ppeerit/think-user",
+    "type": "library",
+    "description": "Library for tp5 user",
+    "keywords": ["user"],
+    "homepage": "https://github.com/ppeerit/think-user",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Chen Ze Wei",
+            "email": "549226266@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Ppeerit\\User\\": "lib/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ppeerit\\User\\": "tests/"
+        }
+    }
+}
