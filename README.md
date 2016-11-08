@@ -12,12 +12,12 @@ composer require ppeerit\think-user
 ```
 ##配置
 扩展配置目录中新增配置文件user.php
-
 ```php
 return [
-	'user_session_name'	=>	'member_auth',				// 用户session名称
-	'user_session_sign'	=>	'member_auth_sign',			// 用户session签名名称
-	'user_pk'			=>	'uid',						// 用户主键
-	'password_key'		=>	'fg5h4ertH45df',			// 密码加密字符串
+	'user_session_name' => 'member_auth', // 用户session名称
+	'user_session_sign' => 'member_auth_sign', // 用户session签名名称
+	'user_pk' => 'uid', // 用户主键
+	'password_key' => 'abcdefg', // 密码加密字符串，自定义
+	'encrypt_level' => 2, //加密等级，1：简单加密，2：双重加密
 ];
 ```

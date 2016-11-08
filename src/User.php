@@ -32,7 +32,6 @@
  */
 namespace Ppeerit\User;
 
-use Ppeerit\User\Exceptions\EncryptInvalidException;
 use Ppeerit\User\Exceptions\UserInvalidException;
 use Ppeerit\User\Library\Encrypt;
 use think\Config;
@@ -58,7 +57,7 @@ class User {
 		'user_session_sign' => 'member_auth_sign', // 用户session签名名称
 		'user_pk' => 'uid', // 用户主键
 		'password_key' => '', // 密码加密字符串
-		'encrypt_level' => 2, //
+		'encrypt_level' => 2, // 加密等级，1：简单加密，2：双重加密
 	];
 
 	//构造方法
@@ -109,10 +108,7 @@ class User {
 			self::$instance = new static();
 		}
 		$encrypt_level = self::$instance->_config['encrypt_level'];
-		if (!in_array($encrypt, self::$instance->allow_encrypt_level)) {
-			throw new EncryptInvalidException('encrypt level is invalid.');
-		}
-		return call_user_func_array(__NAMESPACE__ . 'Encrypt::encrypt_' . $encrypt_level, [$pwd, self::$instance->_config['password_key']]);
+		return Encrypt::encrypt($pwd, self::$instance->_config['password_key'], self::$instance->_config['encrypt_level']);
 	}
 	/**
 	 * 数据签名
