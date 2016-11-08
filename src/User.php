@@ -42,7 +42,7 @@ use think\Session;
  */
 class User {
 	// 实例对象
-	protected $instance;
+	protected static $instance;
 	// 默认配置
 	protected $_config = [
 		'user_session_name' => 'member_auth', // 用户session名称
