@@ -50,7 +50,7 @@ class Encrypt {
 		if (!in_array($level, self::$allow_encrypt_level)) {
 			throw new EncryptInvalidException('encrypt level is invalid.');
 		}
-		return call_user_func_array([self, 'encrypt_level_' . $level], [$pwd, $string]);
+		return call_user_func_array([__CLASS__, 'encrypt_level_' . $level], [$pwd, $string]);
 	}
 	/**
 	 * 密码加字符串简单加密
