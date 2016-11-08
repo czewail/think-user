@@ -31,6 +31,6 @@
  * @link       http://
  */
 namespace Ppeerit\User\Exceptions;
-class EncryptrInvalidException extends \Exception {
+class EncryptInvalidException extends \Exception {
 	//
 }
