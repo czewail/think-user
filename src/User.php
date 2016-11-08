@@ -41,16 +41,8 @@ use think\Session;
  * 用户操作类
  */
 class User {
-	// 密码加密等级
-	const ENCRYPT_LEVEL_1 = '1';
-	// 密码加密等级
-	const ENCRYPT_LEVEL_2 = '2';
 	// 实例对象
 	protected $instance;
-	// 密码允许等级
-	protected $allow_encrypt_level = [
-		ENCRYPT_LEVEL_1, ENCRYPT_LEVEL_2,
-	];
 	// 默认配置
 	protected $_config = [
 		'user_session_name' => 'member_auth', // 用户session名称

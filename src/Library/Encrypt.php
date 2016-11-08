@@ -32,6 +32,8 @@
  */
 namespace Ppeerit\User\Library;
 
+use Ppeerit\User\Exceptions\EncryptInvalidException;
+
 /**
  * 密码加密辅助类
  */
