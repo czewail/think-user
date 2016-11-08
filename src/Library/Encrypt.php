@@ -44,7 +44,7 @@ class Encrypt {
 	const ENCRYPT_LEVEL_2 = '2';
 	// 密码允许等级
 	protected static $allow_encrypt_level = [
-		ENCRYPT_LEVEL_1, ENCRYPT_LEVEL_2,
+		self::ENCRYPT_LEVEL_1, self::ENCRYPT_LEVEL_2,
 	];
 	public static function encrypt($pwd = '', $string = '', $level) {
 		if (!in_array($level, self::$allow_encrypt_level)) {
