@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ppeerit\\User\\": "lib/"
+            "Ppeerit\\User\\": "src/"
         }
     },
     "autoload-dev": {

@@ -32,7 +32,9 @@
  */
 namespace Ppeerit\User;
 
+use Ppeerit\User\Exceptions\EncryptInvalidException;
 use Ppeerit\User\Exceptions\UserInvalidException;
+use Ppeerit\User\Library\Encrypt;
 use think\Config;
 use think\Session;
 
@@ -40,14 +42,23 @@ use think\Session;
  * 用户操作类
  */
 class User {
+	// 密码加密等级
+	const ENCRYPT_LEVEL_1 = '1';
+	// 密码加密等级
+	const ENCRYPT_LEVEL_2 = '2';
 	// 实例对象
 	protected $instance;
+	// 密码允许等级
+	protected $allow_encrypt_level = [
+		ENCRYPT_LEVEL_1, ENCRYPT_LEVEL_2,
+	];
 	// 默认配置
 	protected $_config = [
 		'user_session_name' => 'member_auth', // 用户session名称
 		'user_session_sign' => 'member_auth_sign', // 用户session签名名称
 		'user_pk' => 'uid', // 用户主键
 		'password_key' => '', // 密码加密字符串
+		'encrypt_level' => 2, //
 	];
 
 	//构造方法
@@ -97,7 +108,11 @@ class User {
 		if (is_null(self::$instance)) {
 			self::$instance = new static();
 		}
-		return '' === $pwd ? '' : md5(sha1($pwd) . self::$instance->_config['password_key']);
+		$encrypt_level = self::$instance->_config['encrypt_level'];
+		if (!in_array($encrypt, self::$instance->allow_encrypt_level)) {
+			throw new EncryptInvalidException('encrypt level is invalid.');
+		}
+		return call_user_func_array(__NAMESPACE__ . 'Encrypt::encrypt_' . $encrypt_level, [$pwd, self::$instance->_config['password_key']]);
 	}
 	/**
 	 * 数据签名
@@ -114,4 +129,5 @@ class User {
 		$sign = sha1($code); //生成签名
 		return $sign;
 	}
+
 }
