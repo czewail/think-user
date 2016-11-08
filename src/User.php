@@ -107,7 +107,6 @@ class User {
 		if (is_null(self::$instance)) {
 			self::$instance = new static();
 		}
-		$encrypt_level = self::$instance->_config['encrypt_level'];
 		return Encrypt::encrypt($pwd, self::$instance->_config['password_key'], self::$instance->_config['encrypt_level']);
 	}
 	/**
