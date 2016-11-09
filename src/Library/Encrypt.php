@@ -37,37 +37,46 @@ use Ppeerit\User\Exceptions\EncryptInvalidException;
 /**
  * 密码加密辅助类
  */
-class Encrypt {
-	// 密码加密等级
-	const ENCRYPT_LEVEL_1 = '1';
-	// 密码加密等级
-	const ENCRYPT_LEVEL_2 = '2';
-	// 密码允许等级
-	protected static $allow_encrypt_level = [
-		self::ENCRYPT_LEVEL_1, self::ENCRYPT_LEVEL_2,
-	];
-	public static function encrypt($pwd = '', $string = '', $level) {
-		if (!in_array($level, self::$allow_encrypt_level)) {
-			throw new EncryptInvalidException('encrypt level is invalid.');
-		}
-		return call_user_func_array([__CLASS__, 'encrypt_level_' . $level], [$pwd, $string]);
-	}
-	/**
-	 * 密码加字符串简单加密
-	 * @param  string $pwd    [string]
-	 * @param  string $string [string]
-	 * @return [type]         [string]
-	 */
-	protected static function encrypt_level_1($pwd = '', $string = '') {
-		return '' === $pwd ? '' : md5($pwd . $string);
-	}
-	/**
-	 * 密码加字符串双重加密
-	 * @param  string $pwd    [string]
-	 * @param  string $string [string]
-	 * @return [type]         [string]
-	 */
-	protected static function encrypt_level_2($pwd = '', $string = '') {
-		return '' === $pwd ? '' : md5(sha1($pwd) . $string);
-	}
+class Encrypt
+{
+    // 密码加密等级
+
+    const ENCRYPT_LEVEL_1 = '1';
+
+    const ENCRYPT_LEVEL_2 = '2';
+
+    // 密码允许等级
+    protected static $allow_encrypt_level = [
+        self::ENCRYPT_LEVEL_1, self::ENCRYPT_LEVEL_2,
+    ];
+
+    public static function encrypt($pwd = '', $string = '', $level)
+    {
+        if (!in_array($level, self::$allow_encrypt_level)) {
+            throw new EncryptInvalidException('encrypt level is invalid.');
+        }
+        return call_user_func_array([__CLASS__, 'encrypt_level_' . $level], [$pwd, $string]);
+    }
+
+    /**
+     * 密码加字符串简单加密
+     * @param  string $pwd    [string]
+     * @param  string $string [string]
+     * @return [type]         [string]
+     */
+    protected static function encrypt_level_1($pwd = '', $string = '')
+    {
+        return '' === $pwd ? '' : md5($pwd . $string);
+    }
+
+    /**
+     * 密码加字符串双重加密
+     * @param  string $pwd    [string]
+     * @param  string $string [string]
+     * @return [type]         [string]
+     */
+    protected static function encrypt_level_2($pwd = '', $string = '')
+    {
+        return '' === $pwd ? '' : md5(sha1($pwd) . $string);
+    }
 }

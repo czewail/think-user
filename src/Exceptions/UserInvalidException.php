@@ -31,6 +31,8 @@
  * @link       http://
  */
 namespace Ppeerit\User\Exceptions;
-class UserInvalidException extends \Exception {
-	//
+
+class UserInvalidException extends \Exception
+{
+    //
 }
