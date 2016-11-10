@@ -112,6 +112,18 @@ class User
     }
 
     /**
+     * 用户退出操作
+     */
+    public static function logout()
+    {
+        if (null === self::$instance) {
+            self::$instance = new static();
+        }
+        Session::set(self::$instance->_config['user_session_name'], null);
+        Session::set(self::$instance->_config['user_session_sign'], null);
+    }
+
+    /**
      * 数据签名
      * @param  [type] $data [description]
      * @return [type]  [description]
