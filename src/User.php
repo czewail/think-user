@@ -85,7 +85,7 @@ class User
      * @param  [type] $name [description]
      * @return [type]       [description]
      */
-    public function loginSession($name = null)
+    public static function loginSession($name = null)
     {
         if (null === self::$instance) {
             self::$instance = new static();
