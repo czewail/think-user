@@ -81,6 +81,23 @@ class User
     }
 
     /**
+     * 获取用户session
+     * @param  [type] $name [description]
+     * @return [type]       [description]
+     */
+    public function loginSession($name = null)
+    {
+        if (null === self::$instance) {
+            self::$instance = new static();
+        }
+        if (null === $name) {
+            return Session::get(self::$instance->_config['user_session_name']);
+        } else {
+            return Session::get(self::$instance->_config['user_session_name'] . '.' . $name);
+        }
+    }
+
+    /**
      * 密码加密
      * @param  string $pwd [密码]
      * @return string   [加密后的密码]
